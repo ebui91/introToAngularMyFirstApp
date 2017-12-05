@@ -1,13 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="angularBlog">
  <head>
    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
-   <title></title>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+   <title>Angular Blog</title>
  </head>
- <body>
+
+ <body ng-controller="myCtrl">
+   <h1>{{test}}</h1>
+   <nav>
+     <input placeholder="Search By Title"
+     ng-model="input.title" />
+     <input placeholder="Search By Post"
+     ng-model="input.posts" />
+     <input placeholder="Search By Date"
+     ng-model="input.entry_date" />
+   </nav>
+
+   <button type="btn" name="button" ng-click="makeNewPost= !makeNewPost">Make New Post</button>
+   <div ng-show="makeNewPost">
+     <input placeholder="Title" ng-model="newPost.title"/>
+     <input placeholder="Body" ng-model="newPost.posts"/>
+     <input placeholder="Date" ng-model="newPost.entry_date"/>
+     <button ng-click="addPost(newPost)">Submit</button>
+   </div>
+
+   <hr />
+   <div ng-repeat="post in diary | filter: input">
+     <h3>{{post.title}}</h3>
+     <img src="{{post.img_url}}" alt="blog-img" />
+     <p>{{post.entry_date}}</p>
+     <p>{{post.posts}}</p>
+     <hr/>
+
+   </div>
 
 
-
+   <!-- ORDER MATTERS. Put the CDN script for Angular first, then your app.js, then your controller.js -->
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.js"></script>
+   <script src="app.js"></script>
+   <script src="myCtrl.js"></script>
 </body>
 </html>

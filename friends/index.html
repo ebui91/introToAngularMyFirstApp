@@ -1,13 +1,45 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="angularFriends">
  <head>
    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
-   <title></title>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+   <title>Angular Friends</title>
  </head>
- <body>
+
+ <body ng-controller="myCtrl">
+   <style>
+      .friends{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start;
+      }
+   </style>
+
+   <h1>{{test}}</h1>
+   <nav>
+     <input placeholder="Search By First Name"
+     ng-model="input.first_name" />
+     <input placeholder="Search By Last Name"
+     ng-model="input.last_name" />
+     <input placeholder="Search By Email"
+     ng-model="input.email" />
+   </nav>
+   <hr />
+
+   <div class="friends" ng-repeat="person in friends | filter: input">
+     <h3>{{person.first_name}} {{person.last_name}}</h3>
+     <img src="{{person.img_url}}" alt="profile-pic"/>
+     <p>{{person.email}}</p>
+     <p>{{person.gender}}</p>
+     <hr />
+   </div>
 
 
-
+  <!-- ORDER MATTERS. Put the CDN script for Angular first, then your app.js, then your controller.js -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.js"></script>
+  <script src="app.js"></script>
+  <script src="myCtrl.js"></script>
 </body>
 </html>
